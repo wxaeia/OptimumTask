@@ -1,0 +1,37 @@
+<div>
+    <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+    <app-filter 
+    [Drama]="getTotalCourses()"
+    [Romance]="getTotalFreeCourses()"
+    [Animation]="getTotalPremiumCourses()"
+    (filterRadioButtonSelectionChanged)="onFilterRadioButtonChanged($event)"></app-filter>
+</div>
+
+<ng-container *ngFor="let movies of courses">
+    <ng-container *ngFor="let movie of  movies.movies">
+    <ng-container *ngIf="courseCountRadioButton === 'Drama'|| courseCountRadioButton === movie.genre[0]">
+
+        <div class="course-container" *ngIf="searchText === '' || movie.title.toLowerCase().includes(searchText) ">
+            <div class="course-card">
+                <div>
+                    <img [src]="movie.poster" style="width:220px; height:140px;">
+                </div>
+                <div class="course-name"><h4>{{ movie.title}}</h4></div>
+                <div class="course-description"><p>{{movie.genre}}...</p></div>
+                <div class="course-description">Year: {{movie.year}}  Time: {{ movie.runtime }}</div>
+                <div class="course-buttons">
+                    <button class="btn btn-buy">Details</button>
+                    <button class="btn btn-show">Watch</button>
+                </div>
+            </div>
+        </div> 
+
+
+    </ng-container>
+
+         
+
+    </ng-container>
+   
+</ng-container>
+
